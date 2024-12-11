@@ -1524,6 +1524,7 @@ function setOutput(release) {
     core.setOutput('prerelease', release.prerelease);
     core.setOutput('release', !release.prerelease && !release.draft);
     core.setOutput('assets_url', release.assets_url);
+    core.setOutput('html_url', release.html_url);
 }
 /**
  * Write debug
