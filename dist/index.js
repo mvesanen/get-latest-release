@@ -1523,6 +1523,7 @@ function setOutput(release) {
     core.setOutput('draft', release.draft);
     core.setOutput('prerelease', release.prerelease);
     core.setOutput('release', !release.prerelease && !release.draft);
+    core.setOutput('assets_url', release.assets_url);
 }
 /**
  * Write debug
