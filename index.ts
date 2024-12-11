@@ -56,6 +56,7 @@ function setOutput(release: components["schemas"]["release"]): void {
     core.setOutput('prerelease', release.prerelease);
     core.setOutput('release', !release.prerelease && !release.draft);
     core.setOutput('url', release.url);
+    core.setOutput('assets_url', data.assets_url);
     core.setOutput('html_url', release.html_url);
 }
 
@@ -71,6 +72,7 @@ function WriteDebug(release: components["schemas"]["release"]): void {
     core.debug(`draft: ${release.draft}`);
     core.debug(`prerelease: ${release.prerelease}`);
     core.debug(`url: ${release.url}`)
+    core.debug(`assets_url: ${release.assets_url}`)
     core.debug(`html_url: ${release.html_url}`)
 }
 
