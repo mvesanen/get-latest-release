@@ -7,6 +7,7 @@ async function run(): Promise<void> {
     const myToken = core.getInput('myToken');
     const excludeReleaseTypes = core.getInput('exclude_types').split('|');
     const topList = +core.getInput('view_top');
+    const ghRef = core.getInput('ghRef');
 
     // Set parameters
     const excludeDraft = excludeReleaseTypes.some(f => f === "draft");
@@ -57,7 +58,10 @@ function setOutput(release: components["schemas"]["release"]): void {
     core.setOutput('release', !release.prerelease && !release.draft);
     core.setOutput('url', release.url);
     core.setOutput('assets_url', data.assets_url);
-    core.setOutput('html_url', release.html_url);
+    if(ghRef.startsWith('refs/tags/')
+        core.setOutput(release.html_url.substr(0,lastIndexOf('/'))+ghRef.substr(9));
+    else
+        core.setOutput('html_url', release.html_url);
 }
 
 /**
