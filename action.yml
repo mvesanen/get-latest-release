@@ -12,6 +12,10 @@ inputs:
     description: "View top releases to find release"
     required: false
     default: 100
+  ghRef:
+    description: "current ref"
+    required: false
+    default: "default"
 outputs:
   id:
     description: 'Id of the release'
