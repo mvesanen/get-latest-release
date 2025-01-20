@@ -37,6 +37,7 @@ async function run(): Promise<void> {
             (!excludePrerelease && releaseListElement.prerelease) ||
             (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft) && (!ghRef.find(releaseListElement.tag_name))) {
             core.debug(`Chosen: ${releaseListElement.id}`);
+            core.debug(`ghRef: ${ghRef} tag: ${releaseListElement.tag_name}`);
             setOutput(releaseListElement);
             break;
         }
