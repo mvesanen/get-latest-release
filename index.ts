@@ -35,14 +35,13 @@ async function run(): Promise<void> {
 
         if ((!excludeDraft && releaseListElement.draft) ||
             (!excludePrerelease && releaseListElement.prerelease) ||
-            (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft)) {
+            (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft) && (!ghRef.find(releaseListElement.tag_name))) {
             core.debug(`Chosen: ${releaseListElement.id}`);
             setOutput(releaseListElement);
             break;
         }
     }
 }
-
 
 /**
  * Setup action output values
