@@ -1519,7 +1519,7 @@ function run() {
     		core.setOutput('draft', releaseListElement.draft);
     		core.setOutput('prerelease', releaseListElement.prerelease);
     		core.setOutput('release', !releaseListElement.prerelease && !releaseListElement.draft);
-    		let tmp_dl=releaseListElement.assets_url:
+    		let tmp_dl=releaseListElement.assets_url;
     		let tmp_url=releaseListElement.html_url;
 		if(ghIsRelease)
 		{
