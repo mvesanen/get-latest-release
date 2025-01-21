@@ -1522,7 +1522,7 @@ function run() {
     		core.setOutput('assets_url', releaseListElement.assets_url);
     		let tmp_url=releaseListElement.html_url;
 		if(ghIsRelease)
-			tmp_url=releaseListElement.html_url.substr(0,releaseListElement.html_url.lastIndexOf('/'))+ghTag;
+			tmp_url=releaseListElement.html_url.substr(0,releaseListElement.html_url.lastIndexOf('/')-1)+ghTag;
 		core.setOutput('html_url',tmp_url );
 		core.debug(`Previous release tag is: ${releaseListElement.tag_name}`);
 		core.debug(`Release url is: ${tmp_url}`); 
