@@ -1519,11 +1519,15 @@ function run() {
     		core.setOutput('draft', releaseListElement.draft);
     		core.setOutput('prerelease', releaseListElement.prerelease);
     		core.setOutput('release', !releaseListElement.prerelease && !releaseListElement.draft);
-    		core.setOutput('assets_url', releaseListElement.assets_url);
+    		let tmp_dl=releaseListElement.assets_url:
     		let tmp_url=releaseListElement.html_url;
 		if(ghIsRelease)
+		{
 			tmp_url=releaseListElement.html_url.substr(0,releaseListElement.html_url.lastIndexOf('/')+1)+ghTag;
+			tmp_dl=releaseListElement.html_url.substr(0,releaseListElement.assets_url.lastIndexOf('/')+1)+ghTag; 
+		}
 		core.setOutput('html_url',tmp_url );
+		core.setOutput('assets_url', tmp_dl);
 		core.debug(`Previous release tag is: ${releaseListElement.tag_name}`);
 		core.debug(`Release url is: ${tmp_url}`); 
 		break;
