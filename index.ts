@@ -26,6 +26,7 @@ async function run(): Promise<void> {
 
     // Search release list for latest required release
     if (core.isDebug()) {
+        core.debug(`Debugdebug...why....`);
         core.debug(`Found ${releaseList.data.length} releases`);
         releaseList.data.forEach((el) => WriteDebug(el));
     }
