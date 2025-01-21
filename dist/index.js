@@ -1512,18 +1512,18 @@ function run() {
 			continue;
 		core.debug(`Chosen: ${releaseListElement.id}`);
                 //setOutput(releaseListElement);
-                core.setOutput('id', release.id);
-    		core.setOutput('name', release.id);
-    		core.setOutput('tag_name', release.tag_name);
-    		core.setOutput('created_at', release.created_at);
-    		core.setOutput('draft', release.draft);
-    		core.setOutput('prerelease', release.prerelease);
-    		core.setOutput('release', !release.prerelease && !release.draft);
-    		core.setOutput('assets_url', release.assets_url);
+                core.setOutput('id', releaseListElement.id);
+    		core.setOutput('name', releaseListElement.id);
+    		core.setOutput('tag_name', releaseListElement.tag_name);
+    		core.setOutput('created_at', releaseListElement.created_at);
+    		core.setOutput('draft', releaseListElement.draft);
+    		core.setOutput('prerelease', releaseListElement.prerelease);
+    		core.setOutput('release', !releaseListElement.prerelease && !releaseListElement.draft);
+    		core.setOutput('assets_url', releaseListElement.assets_url);
     		if(ghIsRelease)
-			core.setOutput('html_url', release.html_url.substr(0,lastIndexOf('/'))+ghTag);
+			core.setOutput('html_url', releaseListElement.html_url.substr(0,lastIndexOf('/'))+ghTag);
 		else
-			core.setOutput('html_url', release.html_url);
+			core.setOutput('html_url', releaseListElement.html_url);
 		break;
             }
         }
