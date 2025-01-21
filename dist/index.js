@@ -1483,7 +1483,7 @@ function run() {
         const excludeReleaseTypes = core.getInput('exclude_types').split('|');
         const topList = +core.getInput('view_top');
 	const ghTag = core.getInput('ghRef').substr(10);
-	const ghIsRelease = getInput('ghRef').startsWith('refs/tags/');
+	const ghIsRelease = core.getInput('ghRef').startsWith('refs/tags/');
         // Set parameters
         const excludeDraft = excludeReleaseTypes.some(f => f === "draft");
         const excludePrerelease = excludeReleaseTypes.some(f => f === "prerelease");
