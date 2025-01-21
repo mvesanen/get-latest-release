@@ -1519,7 +1519,8 @@ function run() {
     		core.setOutput('draft', releaseListElement.draft);
     		core.setOutput('prerelease', releaseListElement.prerelease);
     		core.setOutput('release', !releaseListElement.prerelease && !releaseListElement.draft);
-    		let tmp_dl=releaseListElement.assets_url;
+    		let tmp_dl=releaseListElement.html_url;
+		tmp_dl=tmp_dl.replace('/releases/tag/','/releases/download/');
     		let tmp_url=releaseListElement.html_url;
 		if(ghIsRelease)
 		{
