@@ -1482,7 +1482,8 @@ function run() {
         const myToken = core.getInput('myToken');
         const excludeReleaseTypes = core.getInput('exclude_types').split('|');
         const topList = +core.getInput('view_top');
-	 const ghRef = core.getInput('ghRef');
+	const ghTag = core.getInput('ghRef').substr(10);
+	const ghIsRelease = getInput('ghRef').startsWith('refs/tags/');
         // Set parameters
         const excludeDraft = excludeReleaseTypes.some(f => f === "draft");
         const excludePrerelease = excludeReleaseTypes.some(f => f === "prerelease");
@@ -1497,19 +1498,33 @@ function run() {
         });
         // Search release list for latest required release
         if (core.isDebug()) {
-            core.debug(`ghRef is: ${ghRef}`);
+            core.debug(`Build tag is: ${ghTag}`);
 	    core.debug(`Found ${releaseList.data.length} releases`);
             releaseList.data.forEach((el) => WriteDebug(el));
         }
         for (let i = 0; i < releaseList.data.length; i++) {
             let releaseListElement = releaseList.data[i];
-            if (((!excludeDraft && releaseListElement.draft) ||
+            if ((!excludeDraft && releaseListElement.draft) ||
                 (!excludePrerelease && releaseListElement.prerelease) ||
-                (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft))&&(!ghRef.find(releaseListElement.tag_name))) 
+                (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft)) 
 	    {
-                core.debug(`Chosen: ${releaseListElement.id}`);
-                setOutput(releaseListElement);
-                break;
+                if(ghTag==releaseListElement.tag_name)
+			continue;
+		core.debug(`Chosen: ${releaseListElement.id}`);
+                //setOutput(releaseListElement);
+                core.setOutput('id', release.id);
+    		core.setOutput('name', release.id);
+    		core.setOutput('tag_name', release.tag_name);
+    		core.setOutput('created_at', release.created_at);
+    		core.setOutput('draft', release.draft);
+    		core.setOutput('prerelease', release.prerelease);
+    		core.setOutput('release', !release.prerelease && !release.draft);
+    		core.setOutput('assets_url', release.assets_url);
+    		if(ghIsRelease)
+			core.setOutput('html_url', release.html_url.substr(0,lastIndexOf('/'))+ghTag);
+		else
+			core.setOutput('html_url', release.html_url);
+		break;
             }
         }
     });
