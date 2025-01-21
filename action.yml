@@ -34,7 +34,9 @@ outputs:
   url:
     description: 'API URL to release'
   html_url:
-    description: 'HTML URL to release'  
+    description: 'HTML URL to release'
+  download_url:
+    description 'HTML url to download assets'
 runs:
   using: "node20"
   main: "dist/index.js"
