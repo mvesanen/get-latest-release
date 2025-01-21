@@ -1505,7 +1505,8 @@ function run() {
             let releaseListElement = releaseList.data[i];
             if (((!excludeDraft && releaseListElement.draft) ||
                 (!excludePrerelease && releaseListElement.prerelease) ||
-                (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft))&&(!ghRef.find(releaseListElement.tag_name)) {
+                (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft))&&(!ghRef.find(releaseListElement.tag_name))) 
+	    {
                 core.debug(`Chosen: ${releaseListElement.id}`);
                 setOutput(releaseListElement);
                 break;
