@@ -1525,7 +1525,7 @@ function run() {
 		{
 			tmp_url=releaseListElement.html_url.substr(0,releaseListElement.html_url.lastIndexOf('/')+1)+ghTag;
 			tmp_dl=releaseListElement.html_url.substr(0,releaseListElement.html_url.lastIndexOf('/')+1);
-			tmp_dl=tmp_dl.replace('/releases/tag/',/releases/download/'):
+			tmp_dl=tmp_dl.replace('/releases/tag/','/releases/download/'):
 			tmp_dl=tmp_dl + ghTag; 
 			
 		}
