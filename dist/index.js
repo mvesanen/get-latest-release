@@ -1521,7 +1521,7 @@ function run() {
     		core.setOutput('release', !releaseListElement.prerelease && !releaseListElement.draft);
     		core.setOutput('assets_url', releaseListElement.assets_url);
     		if(ghIsRelease)
-			core.setOutput('html_url', releaseListElement.html_url.substr(0,lastIndexOf('/'))+ghTag);
+			core.setOutput('html_url', releaseListElement.html_url.substr(0,releaseListElement.html_url.lastIndexOf('/'))+ghTag);
 		else
 			core.setOutput('html_url', releaseListElement.html_url);
 		break;
